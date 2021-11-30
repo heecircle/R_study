@@ -1,0 +1,12 @@
+midwest<-as.data.frame(ggplot2::midwest)
+summary(midwest)
+head(midwest)
+midwest<-rename(midwest,total=poptotal)
+midwest<-rename(midwest,asain=popasian)
+head(midwest)
+midwest$percentage=midwest$asain/midwest$total
+hist(midwest$percentage)
+a<-mean(midwest$percentage)
+midwest$ls<-ifelse(midwest$percentage>a,"large","small")
+table(midwest$ls)
+qplot(midwest$ls)
